@@ -109,7 +109,7 @@ export default {
   },
 
   created() {
-    console.log(this.$route.path);
+    // this.$route.path  获取当前路由
     for (var i = 0; i < this.navList.length; i++) {
       if (this.navList[i].path == this.$route.path) {
         this.isChange = i;
