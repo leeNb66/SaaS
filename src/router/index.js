@@ -8,13 +8,16 @@ import ClassSummary from '@/components/ClassSummary/list'
 import Students from '@/components/Students/list'
 
 Vue.use(Router)
-
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 export default new Router({
   routes: [{
       path: '/',
       name: 'index',
       component: Index,
-      redirect:"/class",
+      redirect: "/class",
       children: [
         //班级
         {
@@ -46,7 +49,7 @@ export default new Router({
           name: 'students',
           component: Students,
         },
-        
+
       ]
     },
 
