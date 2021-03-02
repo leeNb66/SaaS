@@ -7,7 +7,7 @@
         <h1>云教务管理系统</h1>
       </el-header>
       <el-container>
-        <el-aside width="200px">
+        <el-aside width="200px" >
           <ul class="ul">
             <template v-for="(item, index) in navList">
               <li
@@ -36,7 +36,7 @@ export default {
     return {
       navList: [
         {
-          path: "",
+          path: "/class",
           meta: {
             name: "班级管理",
           },
@@ -48,7 +48,7 @@ export default {
           },
         },
         {
-          path: "",
+          path: "/course",
           meta: {
             name: "课程管理",
           },
@@ -60,7 +60,7 @@ export default {
           },
         },
         {
-          path: "",
+          path: "/attendance",
           meta: {
             name: "考勤管理",
           },
@@ -72,7 +72,7 @@ export default {
           },
         },
         {
-          path: "",
+          path: "/classSummary",
           meta: {
             name: "课时汇总",
           },
@@ -84,7 +84,7 @@ export default {
           },
         },
         {
-          path: "",
+          path: "/students",
           meta: {
             name: "学员管理",
           },
@@ -102,6 +102,9 @@ export default {
   methods: {
     addClass(val) {
       this.isChange = val;
+      this.$router.push({
+        path:this.navList[val].path
+      })
     },
   },
 
