@@ -9,12 +9,22 @@
       <el-container>
         <el-aside width="200px">
           <ul class="ul">
-            <template v-for="item in navList" >
-              <li :key="item.id">{{ item.meta.name }}</li>
+            <template v-for="(item, index) in navList">
+              <li
+                :key="index.id"
+                ref="changeInit"
+                @click="addClass(index)"
+                :class="index == isChange ? 'changeClass' : ''"
+                :style="index == isChange ? item.checked : item.unchecked"
+              >
+                {{ item.meta.name }}
+              </li>
             </template>
           </ul>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view>路由出口</router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -30,11 +40,23 @@ export default {
           meta: {
             name: "班级管理",
           },
+          checked: {
+            backgroundPosition: "20px -290px",
+          },
+          unchecked: {
+            backgroundPosition: "20px -458px",
+          },
         },
         {
           path: "",
           meta: {
             name: "课程管理",
+          },
+          checked: {
+            backgroundPosition: "20px 7px",
+          },
+          unchecked: {
+            backgroundPosition: "20px -150px",
           },
         },
         {
@@ -42,11 +64,23 @@ export default {
           meta: {
             name: "考勤管理",
           },
+          checked: {
+            backgroundPosition: "20px -630px",
+          },
+          unchecked: {
+            backgroundPosition: "20px -788px",
+          },
         },
         {
           path: "",
           meta: {
             name: "课时汇总",
+          },
+          checked: {
+            backgroundPosition: "-211px 12px",
+          },
+          unchecked: {
+            backgroundPosition: "-211px -146px",
           },
         },
         {
@@ -54,10 +88,23 @@ export default {
           meta: {
             name: "学员管理",
           },
+          checked: {
+            backgroundPosition: "31px -1190px",
+          },
+          unchecked: {
+            backgroundPosition: "-112px -1190px",
+          },
         },
       ],
+      isChange: 0,
     };
   },
+  methods: {
+    addClass(val) {
+      this.isChange = val;
+    },
+  },
+
 };
 </script>
 
@@ -68,28 +115,19 @@ export default {
   line-height: 60px;
   background-color: #fafafc;
 }
-.ul{
-    padding-bottom: 38px;
+.ul {
+  padding-bottom: 38px;
 }
-li{
+.changeClass {
+  color: #66aff4;
+  background-color: #e8ebf0;
+  border-radius: 10px;
+}
+li {
   background: url("../assets/img/ico.png") no-repeat;
-  background-size: 370px;
-}
-ul li:first-of-type {
-  background-position: 22px -575px;
-  margin-top: 38px;
-}
-ul li:nth-of-type(2) {
-  background-position: 22px -194px;
-}
-ul li:nth-of-type(3) {
-  background-position: 22px -980px;
-}
-ul li:nth-of-type(4) {
-  background-position: -260px -193px;
-}
-ul li:nth-of-type(5) {
-  background-position: -141px -1474px;
+  background-size: 300px;
+  height: 93px;
+  margin: 17px 7px;
 }
 h1 {
   display: inline-block;
