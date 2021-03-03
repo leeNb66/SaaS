@@ -1,12 +1,12 @@
 <template>
     <div>
-        <el-button-group>
+        <div class="buttongrounp">
             <div class="introduction">课时汇总</div>
             <div class="brief"></div>
             <div class="brief-s"></div>
-            <div class="sele">
+            <div class="selesss">
                 <el-dropdown>
-                    <span class="el-dropdown-link">
+                    <span class="el-dropdownlink">
                         课程<i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -15,7 +15,7 @@
                     </el-dropdown-menu>
                 </el-dropdown>
                 <el-dropdown>
-                    <span class="el-dropdown-link">
+                    <span class="el-dropdownlink">
                         班级<i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -25,7 +25,7 @@
                 </el-dropdown>
                 <input type="text">
             </div>
-        </el-button-group>
+        </div class="buttongrounp">
         <div class="row-course">
             <div class="dates">
                 <div class="upper">上一月</div>
@@ -45,7 +45,7 @@
         </div>
         <table class="theads">
             <template>
-                <tr v-for="(item,index) in navlist">
+                <tr v-for="(item,index) in navlist" >
                     <td>{{item.week}}</td>
                     <td>
                         <div class="subject" @click="ShowDetails(index)">
@@ -149,7 +149,7 @@ export default {
         color: #333;
         padding: 0px;
     }
-    .el-button-group{
+    .buttongrounp{
         width: 100%!important;
         position: relative;
         height: 51px;
@@ -181,14 +181,15 @@ export default {
         left: 106px;
         top: 25px;
     }
-    .el-dropdown-link {
+    .el-dropdownlink {
         cursor: pointer;
-        margin-right: 36px;
+        margin-right: 16px;
+        margin-left: 20px;
     }
     .el-icon-arrow-down {
         font-size: 12px;
     }
-    .sele{
+    .selesss{
         position: absolute;
         left: 158px;
         top: 6px;
@@ -199,7 +200,7 @@ export default {
         line-height: 36px;
         background-color: #ffffff;
     }
-    .sele input{
+    .selesss input{
         width: 303px;
         height: 30px;
         border: 0px;

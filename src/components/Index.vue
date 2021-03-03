@@ -165,11 +165,10 @@ h1 {
   color: #505e79;
 }
 
-<<<<<<< HEAD
 .el-main {
   background-color: #e9eef3;
   color: #333;
-  text-align: center;
+
   padding: 0px;
   float: left;
 }
@@ -179,12 +178,10 @@ body > .el-container {
 }
 
 
-=======
 body > .el-container {
   margin-bottom: 40px;
 }
 .el-main{
   padding: 0;
 }
->>>>>>> d687b8aa644290ff633763f5bebd510dad32f0e9
 </style>
