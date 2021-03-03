@@ -11,6 +11,7 @@
           <ul class="ul">
             <template v-for="(item, index) in navList">
               <li
+                class="li-class"
                 :key="index.id"
                 ref="changeInit"
                 @click="addClass(index)"
@@ -109,7 +110,7 @@ export default {
   },
 
   created() {
-    // this.$route.path  获取当前路由
+    // this.$route.path  获取当前路由  //跳转路由bug
     for (var i = 0; i < this.navList.length; i++) {
       if (this.navList[i].path == this.$route.path) {
         this.isChange = i;
@@ -119,7 +120,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .el-header,
 .el-footer {
   color: #333;
@@ -134,7 +135,7 @@ export default {
   background-color: #e8ebf0;
   border-radius: 10px;
 }
-li {
+.li-class {
   background: url("../assets/img/ico.png") no-repeat;
   background-size: 300px;
   height: 93px;

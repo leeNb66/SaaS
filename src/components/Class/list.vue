@@ -4,11 +4,9 @@
     <el-button-group>
       <button class="dele">删除</button>
       <button class="add-class" @click="addclass = true">添加班级</button>
-      <el-dialog
-        title="增加班级"
-        :visible.sync="addclass"
-      >
-      <addClass></addClass>
+      <el-dialog title="增加班级" width="920px" :visible.sync="addclass">
+        <addClass></addClass>
+        <!-- 添加班级组件 -->
       </el-dialog>
       <div class="sele">
         <el-dropdown>
@@ -25,29 +23,40 @@
     </el-button-group>
 
     <el-table class="table" :data="tableData" style="width: 100%">
-      <el-table-column prop="date" label="班级名称" width="456px">
+      <el-table-column prop="date" label="班级名称" width="400px">
       </el-table-column>
-      <el-table-column prop="name" label="课程" width="260px">
+      <el-table-column prop="name" label="课程" width="200px">
       </el-table-column>
-      <el-table-column prop="address" label="老师" width="210px">
+      <el-table-column prop="address" label="老师" width="200px">
       </el-table-column>
-      <el-table-column prop="man" label="人数" width="125"> </el-table-column>
-      <el-table-column prop="ke" label="计划课时" width="126px">
+      <el-table-column prop="man" label="人数" width="125px"> </el-table-column>
+      <el-table-column prop="ke" label="计划课时" width="125px">
       </el-table-column>
-      <el-table-column prop="yi" label="已排课时" width="112px">
+      <el-table-column prop="yi" label="已排课时" width="125px">
       </el-table-column>
-      <el-table-column prop="shang" label="已上课时" width="240px">
+      <el-table-column prop="shang" label="已上课时" width="125px">
+      </el-table-column>
+      <el-table-column width="125px">
+        <div slot-scope="scope" class="class-Seched">
+          <span @click="classScheduling(scope.$index)">排课</span>
+        </div>
       </el-table-column>
     </el-table>
+
+    <el-dialog   :title="index"  width="80%"  class="dialog"  center :visible.sync="classSched">
+      <classSched></classSched>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import addClass from "./addClass.vue"
+import addClass from "./addClass.vue";
+import classSched from "./classScheduling.vue";
 export default {
-    components:{
-        addClass
-    },
+  components: {
+    addClass,
+    classSched,
+  },
   data() {
     return {
       tableData: [
@@ -107,19 +116,30 @@ export default {
         },
       ],
       addclass: false,
+      classSched:false,
+      index:''
     };
+  },
+  methods: {
+    classScheduling(index) {  /* 排课 */
+      this.classSched  = true
+      this.index = this.tableData[index].date
+    },
   },
 };
 </script>
 
 <style >
+.el-dialog{
+  background-color: #fcfcfc;
+}
 .has-gutter {
   background-color: #f5f6fa;
 }
 .table {
   padding: 24px 0px 0px 28px;
 }
-.table tr > td:first-of-type {
+.table .el-table__row > td:first-of-type {
   background: url("../../assets/img/ico.png") no-repeat;
   background-size: 180px;
   background-position: -70px -327px;
@@ -209,6 +229,19 @@ export default {
   background-position: 260px -436px;
 }
 
-/* 弹框 */
+/* 排课 */
+.class-Seched {
+  display: none;
+  width: 200px;
+  cursor: pointer;
+}
+.el-table__row:hover .class-Seched {
+  display: inline-block;
+  text-align: left;
+  color: #1890ff;
+}
 
+.el-dialog__title{
+  font-size: 20px;
+}
 </style>

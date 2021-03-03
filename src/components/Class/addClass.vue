@@ -16,7 +16,10 @@
         </tr>
         <tr>
           <td>计划课时：</td>
-          <td><el-input style="width: 400px" value="0"></el-input>&nbsp;&nbsp;&nbsp;课时</td>
+          <td>
+            <el-input style="width: 400px" value="0"></el-input
+            >&nbsp;&nbsp;&nbsp;课时
+          </td>
         </tr>
         <tr>
           <td>开始日期：</td>
@@ -86,8 +89,8 @@ export default {
           },
         ],
       },
-      value1:'',
-      value2:''
+      value1: "",
+      value2: "",
     };
   },
 };
@@ -95,21 +98,19 @@ export default {
 
 <style scoped>
 table {
- width: 610px;
- height: 330px;
- font-size: 19px;
- margin-left: 44px;
+  width: 610px;
+  height: 330px;
+  font-size: 19px;
+  margin-left: 44px;
 }
-.bottom{
-    width: 850px;
-    border-bottom: 1px solid #e9e9e9;
-    margin-top: 70px;
-    margin-left: -18px;
+.bottom {
+  width: 100%;
+  border-bottom: 1px solid #e9e9e9;
+  margin-top: 70px;
 }
-.preservation{
-    width: 150px;
-    margin-left: 650px;
-    margin-top: 20px;
+.preservation {
+  width: 150px;
+  margin-left: 650px;
+  margin-top: 20px;
 }
-
 </style>
