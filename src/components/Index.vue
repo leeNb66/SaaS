@@ -7,7 +7,7 @@
         <h1>云教务管理系统</h1>
       </el-header>
       <el-container>
-        <el-aside width="200px" >
+        <el-aside width="200px">
           <ul class="ul">
             <template v-for="(item, index) in navList">
               <li
@@ -23,7 +23,7 @@
           </ul>
         </el-aside>
         <el-main>
-          <router-view>路由出口</router-view>
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -96,18 +96,26 @@ export default {
           },
         },
       ],
-      isChange: 0,
+      isChange: "",
     };
   },
   methods: {
     addClass(val) {
       this.isChange = val;
       this.$router.push({
-        path:this.navList[val].path
-      })
+        path: this.navList[val].path,
+      });
     },
   },
 
+  created() {
+    // this.$route.path  获取当前路由
+    for (var i = 0; i < this.navList.length; i++) {
+      if (this.navList[i].path == this.$route.path) {
+        this.isChange = i;
+      }
+    }
+  },
 };
 </script>
 
@@ -157,6 +165,7 @@ h1 {
   color: #505e79;
 }
 
+<<<<<<< HEAD
 .el-main {
   background-color: #e9eef3;
   color: #333;
@@ -170,4 +179,12 @@ body > .el-container {
 }
 
 
+=======
+body > .el-container {
+  margin-bottom: 40px;
+}
+.el-main{
+  padding: 0;
+}
+>>>>>>> d687b8aa644290ff633763f5bebd510dad32f0e9
 </style>
