@@ -4,14 +4,24 @@
       <div class="bottom">
           <table>
               <tr>
-                  <td><input type="radio" name="sign">出勤</td>
+                  <el-radio-group v-model="radio">
+                    <td><el-radio :label="1"><span>出勤</span></el-radio></td>
+                    <td><el-radio :label="2"><span>迟到</span></el-radio></td>
+                    <td><el-radio :label="3"><span>请假</span></el-radio></td>
+                    <td><el-radio :label="4"><span>旷课</span></el-radio></td>
+                  </el-radio-group>
+
+
+                  <!-- <td><input type="radio" name="sign">出勤</td>
                   <td><input type="radio" name="sign">迟到</td>
                   <td><input type="radio" name="sign">请假</td>
-                  <td><input type="radio" name="sign">旷课</td> 
+                  <td><input type="radio" name="sign">旷课</td>  -->
               </tr>
           </table>
-                
-          <textarea class="text" placeholder="备注"></textarea>
+          <el-input type="textarea" class="text" placeholder="备注" v-model="form.desc"></el-input>
+
+
+          <!-- <textarea class="text" placeholder="备注"></textarea> -->
           <button class="btn">保存</button>
       </div>
   </div>
@@ -19,7 +29,15 @@
 
 <script>
 export default {
-
+    data () {
+      return {
+        radio: 1,
+        form: {
+            desc: '',
+            
+        },
+      };
+    }
 }
 </script>
 
@@ -53,9 +71,13 @@ export default {
         padding-right: 30px;
     }
     
+    table tr td .el-radio span{
+        font-size: 18px;
+    }
+    
     .box .bottom .text{
         width: 375px;
-        height: 62px;
+        /* height: 62px; */
         border: 1px solid #dee3e9;
         border-radius: 3px;
         position: absolute;

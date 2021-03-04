@@ -18,10 +18,18 @@
                 <!-- <input class="date2" type="text" placeholder="结束日期"> -->
             </div>
             <div class="right">
-                <select class="right1">
+
+                <el-select class="right1" v-model="form.region" placeholder="课程">
+                    <el-option label="体育" value="1"></el-option>
+                    <el-option label="微机" value="2"></el-option>
+                </el-select>
+                <el-input class="right2" placeholder="搜索学院快速签到" v-model="input" clearable></el-input>
+
+
+                <!-- <select class="right1">
                     <option>课程</option>
                 </select>
-                <input class="right2" type="search" placeholder="搜索学院快速签到">
+                <input class="right2" type="search" placeholder="搜索学院快速签到"> -->
             </div>
         </div>
         <div class="main">
@@ -41,9 +49,11 @@
                         <td class="td3">
                             <span class=""><img src="../../assets/img/yidaoda.jpg" alt=""> 已到达</span>
                             <a href="#" @click="detail"><img src="../../assets/img/qiandao.jpg" alt=""> 签到</a>
+                            
                             <el-dialog :visible.sync="detailss">
                             <detail></detail>
                             </el-dialog>
+                       
                         </td>
                     </tr>
                 </table>
@@ -54,6 +64,7 @@
  
 <script>
 import detail from "./detail.vue";
+import axios from 'axios';
 export default {
   components: {
     detail,
@@ -64,12 +75,24 @@ export default {
       form: {
           date1: '',
           date2: '',
-      }
+          region: '',
+          
+      },
+      input: ''
     };
+  },
+  created(){
+      this.loaddata();
   },
   methods: {
     detail() {
       this.detailss = true;
+    },
+    loaddata(){   //请求接口，获取数据
+        axios.get('http://www.eshareedu.cn/edusystems/api/courses/list').then(function (res){
+            var _this=this
+            console.log(res)
+        })
     },
   },
 };
@@ -170,18 +193,18 @@ export default {
         background-position: 389px 8px;
     }
     .box .header .right .right1{
-        width: 59px;
+        width: 79px;
         height: 36px;
         border: none;
         float: left;
-        margin-left: 25px;
-        margin-right: 24px;
+        /* margin-left: 25px; */
+        /* margin-right: 24px; */
         color: #9fadc7;
     }
     .box .header .right .right2{
-        width: 279px;
+        width: 307px;
         height: 36px;
-        border: none;
+        border: white;
         float: left;
     }
     .box .main{
