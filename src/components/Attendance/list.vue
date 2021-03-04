@@ -141,7 +141,7 @@ export default {
     }
     
     .box .header .middle .date1{
-        width: 121px;
+        width: 134px;
         /* height: 36px; */
         /* border: 1px solid #dee3e9; */
         position: absolute;
@@ -150,10 +150,10 @@ export default {
         /* border: none; */
     }
     .box .header .middle .date2{
-        width: 121px;
+        width: 134px;
         /* height: 36px; */
         position: absolute;
-        left: 178px;
+        left: 165px;
         top: 0;
         /* border: none; */
     }
