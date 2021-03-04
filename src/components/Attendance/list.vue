@@ -89,11 +89,11 @@ export default {
       this.detailss = true;
     },
     loaddata(){   //请求接口，获取数据
-        axios.get('http://www.eshareedu.cn/edusystems/api/courses/list').then(function (res){
-            var _this=this
+        axios.get('/api/courses/list').then(function (res){
             console.log(res)
+            var _this=this
         })
-    },
+    },      
   },
 };
 </script>
