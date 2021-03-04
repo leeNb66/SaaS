@@ -7,10 +7,11 @@
         <h1>云教务管理系统</h1>
       </el-header>
       <el-container>
-        <el-aside width="200px" >
+        <el-aside width="200px">
           <ul class="ul">
             <template v-for="(item, index) in navList">
               <li
+                class="li-class"
                 :key="index.id"
                 ref="changeInit"
                 @click="addClass(index)"
@@ -23,7 +24,7 @@
           </ul>
         </el-aside>
         <el-main>
-          <router-view>路由出口</router-view>
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -96,18 +97,26 @@ export default {
           },
         },
       ],
-      isChange: 0,
+      isChange: "",
     };
   },
   methods: {
     addClass(val) {
       this.isChange = val;
       this.$router.push({
-        path:this.navList[val].path
-      })
+        path: this.navList[val].path,
+      });
     },
   },
 
+  created() {
+    // this.$route.path  获取当前路由  //跳转路由bug
+    for (var i = 0; i < this.navList.length; i++) {
+      if (this.navList[i].path == this.$route.path) {
+        this.isChange = i;
+      }
+    }
+  },
 };
 </script>
 
@@ -126,7 +135,7 @@ export default {
   background-color: #e8ebf0;
   border-radius: 10px;
 }
-li {
+.li-class {
   background: url("../assets/img/ico.png") no-repeat;
   background-size: 300px;
   height: 93px;
@@ -169,12 +178,11 @@ body > .el-container {
   margin-bottom: 40px;
 }
 
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
 
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
+body > .el-container {
+  margin-bottom: 40px;
+}
+.el-main{
+  padding: 0;
 }
 </style>

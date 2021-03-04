@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "calendar.vue": "0.0.1",
     "element-ui": "^2.15.1",
+    "less-loader": "^5.0.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
