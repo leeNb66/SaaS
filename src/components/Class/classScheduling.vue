@@ -163,6 +163,20 @@
             </tr>
           </div>
         </div>
+
+        <div class="box group">
+            <tr>
+              <td>
+                <div class="students">学员
+                  <span class=" iconfont icon-tianjiarenyuan">
+                    <a href="javascript:;" class="addstudents">添加学员</a></span> 
+                    </div>
+              </td>
+               <td>
+                 <div>痢菌净</div> <div>痢菌净</div> <div>痢菌净</div> <div>痢菌净</div>
+               </td>
+            </tr>
+        </div>
       </table>
     </form>
   </div>
@@ -217,6 +231,7 @@ table {
 }
 .group {
   padding: 20px;
+  margin: 20px;
   background-color: #fff;
 }
 
@@ -300,4 +315,72 @@ table {
   position: relative;
   top: 10px;
 }
+
+/* 引入精灵图 */
+.elf {
+  width: 24px;
+  height: 24px;
+  background-image: url("../../assets/img/ico.png");
+}
+.userCap {
+  display: inline-block;
+  background-position: -2px -630px;
+}
+.box .user > div {
+  margin-top: 30px;
+  margin-right: 100px;
+  float: left;
+}
+/* 引入精灵图 */
+
+.box tr td{
+  width: 100%;
+  float: left;
+}
+.box tr td .students{
+    font-size: 20px;
+    margin-top: 26px;
+}
+.box tr td .students span{
+  margin-left: 30px;
+}
+.box tr td .students a{
+  margin-left: 7px;
+  text-decoration:none;
+  color: #4281fc;
+  font-weight: normal;
+}
+.box tr td:nth-of-type(2) div{
+  float: left;
+    background: url('../../assets/img/ico.png');
+  background-position: 0px -620px;
+  margin: 27px 100px 20px 10px;
+  padding-left: 32px;
+}
+.box tr td:nth-of-type(2){
+  height: 57px;
+  line-height: 57px;
+
+}
+@font-face {font-family: "iconfont";
+    src: url('//at.alicdn.com/t/font_2397874_f8g10mwklol.eot?t=1614758616054'); /* IE9 */
+    src: url('//at.alicdn.com/t/font_2397874_f8g10mwklol.eot?t=1614758616054#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMMAAsAAAAABrgAAAK9AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBPIFQATYCJAMICwYABCAFhG0HOBv+BVGUrMkO2Y/D2D1SYi3a4ITDp+0RE/PHJoKn/dJ5+/cwBCoFAAksAUnWhWWJhCO0VXFRlYCadWtv+/00JRY258uyqh2wQv8g7wPnp3R+Tk+p+bFws5u8dpsW7XymAw2y5sc9vkZxikWS/cXhtHneBTK/wbnMNTDqAoy3BjrWoMgKJPSG6VXDpYQBPE6gbqKxyoaLu0doy/C4QFwMPAXtnFeWw0RVKNcszeKWkmq6nN7hpvp+/LU0qiSlAi7ZevrcwvrHfJJSjDRGHBQIPgJaXUKB+UAmdtZGN6uJEF9Tj9ZNBfsqDH7MbzSEXuxVI8K/Duc3gz7IvSce499qfgIZ9q4ADo66npzq62qO/joY7bOWqd9rY4ea3H86DiCarg5V0+XHZ/f7a+fIven9t7Pp/bSHio8W2dr84d5VucXKNyN5ojOmTmu7k7btU5e238kxTm+f1nHnLi0Z/5rMg9IUhCWuh/2bNg6PF8vHinghivX/f5v7U1nxIweT6Q8VGqgOBmQ7nA61IjlgDUBjJCuG/+pvLGr9Hx8ZrfhXbcrg+ynzrvj97KB6blvwD3k9a3IswIp0NVxkS1Zk3BKwoI4G7Oz0O1bZc8PmUM3xQkgqJkChajoyY+dDSZPlUFa1GurmuVzdpAuriVzDXC8AQrtXSFqNQaHdGzJjf6Ck1x+UtUcBdbuja8smM+Ncdz2TErKojxiYLHXUIF1deE/eNlacFSjCM3EZBHCxcHExcUkp8Rwzyp23FHHoOEvwApxGcZxhzllIRqa+SL6aLTpd96apyRLoWo8RRRALaUcoYGRSTjQW3dLn7xHPVkzhlqoR8zPCSkH/aGFq3gN5KU17Vd3LK6Udz5IQDnJYJoEuwCASi2VQXj8oRAwx5Y8I51ZmpJ7rK52uL0++bhPUYVUKUlJovRSoNGSVTOlxq1IAAAAA') format('woff2'),
+    url('//at.alicdn.com/t/font_2397874_f8g10mwklol.woff?t=1614758616054') format('woff'),
+    url('//at.alicdn.com/t/font_2397874_f8g10mwklol.ttf?t=1614758616054') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('//at.alicdn.com/t/font_2397874_f8g10mwklol.svg?t=1614758616054#iconfont') format('svg'); /* iOS 4.1- */
+    }
+
+    .iconfont {
+        font-family: "iconfont" !important;
+        font-size: 16px;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .icon-tianjiarenyuan:before {
+        content: "\e62c";
+        color: #4281fc;
+    }
 </style>
