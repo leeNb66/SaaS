@@ -12,6 +12,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 
 
+import httpRequest from "./api/httpRequest.js"
+Vue.http = Vue.prototype.$http = httpRequest
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -6,6 +6,7 @@ import Course from '@/components/Course/list'
 import Attendance from '@/components/Attendance/list'
 import ClassSummary from '@/components/ClassSummary/list'
 import Students from '@/components/Students/list'
+import Login from '@/components/login.vue'
 
 Vue.use(Router)
 const originalPush = Router.prototype.push
@@ -13,7 +14,8 @@ Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 export default new Router({
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'index',
       component: Index,
@@ -52,6 +54,10 @@ export default new Router({
 
       ]
     },
-
+    { //登录
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
   ]
 })
