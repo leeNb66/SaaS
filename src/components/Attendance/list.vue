@@ -7,8 +7,15 @@
                 <div class="brief2"></div>
             </div>
             <div class="middle">
-                <input class="date1" type="text" placeholder="开始日期"> 
-                <input class="date2" type="text" placeholder="结束日期">
+                <el-date-picker class="date1" type="date" placeholder="开始日期" v-model="form.date1"></el-date-picker>
+                
+                <!-- <el-col class="line" :span="2">-</el-col> -->
+                <img src="../../assets/img/bolangxian.jpg" alt="">
+
+                <el-date-picker class="date2" type="date" placeholder="结束日期" v-model="form.date2"></el-date-picker>
+
+                <!-- <input class="date1" type="text" placeholder="开始日期">  -->
+                <!-- <input class="date2" type="text" placeholder="结束日期"> -->
             </div>
             <div class="right">
                 <select class="right1">
@@ -54,6 +61,10 @@ export default {
   data() {
     return {
       detailss: false,
+      form: {
+          date1: '',
+          date2: '',
+      }
     };
   },
   methods: {
@@ -116,9 +127,9 @@ export default {
         height: 38px;
         border: 1px solid #dee3e9;
         background: white;
-        background-image: url('../../assets/img/riqi.jpg');
+        /* background-image: url('../../assets/img/riqi.jpg');
         background-repeat: no-repeat;
-        background-position: 12px, 10px;
+        background-position: 12px, 10px; */
         position: absolute;
         left: 158px;
         top: 6px;
@@ -130,21 +141,21 @@ export default {
     }
     
     .box .header .middle .date1{
-        width: 105px;
-        height: 36px;
+        width: 121px;
+        /* height: 36px; */
         /* border: 1px solid #dee3e9; */
         position: absolute;
-        left: 55px;
+        left: 0;
         top: 0;
-        border: none;
+        /* border: none; */
     }
     .box .header .middle .date2{
-        width: 98px;
-        height: 36px;
+        width: 121px;
+        /* height: 36px; */
         position: absolute;
-        left: 198px;
+        left: 178px;
         top: 0;
-        border: none;
+        /* border: none; */
     }
     .box .header .right{
         width: 425px;
