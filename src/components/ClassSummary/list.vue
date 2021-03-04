@@ -45,7 +45,7 @@
         </div>
         <table class="theads">
             <template>
-                <tr v-for="(item,index) in navlist" >
+                <tr v-for="(item,index) in navlist">
                     <td>{{item.week}}</td>
                     <td>
                         <div class="subject" @click="ShowDetails(index)">
