@@ -25,7 +25,7 @@
                 </el-dropdown>
                 <input type="text">
             </div>
-        </div class="buttongrounp">
+        </div>
         <div class="row-course">
             <div class="dates">
                 <div class="upper">上一月</div>
@@ -45,7 +45,7 @@
         </div>
         <table class="theads">
             <template>
-                <tr v-for="(item,index) in navlist">
+                <tr v-for="(item,index) in navlist ">
                     <td>{{item.week}}</td>
                     <td>
                         <div class="subject" @click="ShowDetails(index)">
@@ -76,7 +76,7 @@ export default {
             CourseDetails:false,
             list:[],
             navlist:[
-                {
+   {
                     week:"星期一",
                     name:"架子鼓基础班",
                     classes:"2021",
@@ -138,74 +138,25 @@ export default {
         ShowDetails(index){
             this.CourseDetails=true;
             this.list=this.navlist[index];
+        },
+        loaddata(){
+            this.$http.get('/api/classes/add',null,success=>{
+
+            },error =>{
+
+            })
         }
     }
 }
 </script>
 
-<style scoped>
+<style lang='less' scoped>
+@import '../../assets/less/indexpublic';
+
     .el-main {
         background-color: #e9eef3;
         color: #333;
         padding: 0px;
-    }
-    .buttongrounp{
-        width: 100%!important;
-        position: relative;
-        height: 51px;
-        border: #c8ccd5 solid 1px;
-        background-color: #f5f6fa;
-    }
-    .introduction{
-        width: 106px;
-        height: 51px;
-        background-color: #dfe3ec;
-        line-height: 51px;
-        font-size: 16px;
-    }
-    .brief{
-        width: 0;
-        height: 0;
-        border-right: 16px solid transparent;
-        border-bottom: 25px solid #dfe3ec;
-        left: 106px;
-        top: 0px;
-        position: absolute;
-    }
-    .brief-s{
-        width: 0;
-        height: 0;
-        border-right: 16px solid transparent;
-        border-top: 25px solid #dfe3ec;
-        position: absolute;
-        left: 106px;
-        top: 25px;
-    }
-    .el-dropdownlink {
-        cursor: pointer;
-        margin-right: 16px;
-        margin-left: 20px;
-    }
-    .el-icon-arrow-down {
-        font-size: 12px;
-    }
-    .selesss{
-        position: absolute;
-        left: 158px;
-        top: 6px;
-        color: #a0a3aa;
-        border: 1px solid #dee3e9;
-        height: 36px!important;
-        width: 518px;
-        line-height: 36px;
-        background-color: #ffffff;
-    }
-    .selesss input{
-        width: 303px;
-        height: 30px;
-        border: 0px;
-        background: url("../../assets/img/ico.png") no-repeat;
-        background-position: 181px -436px;
     }
     .row-course{
         width: 100%;
@@ -223,12 +174,13 @@ export default {
         float: left;
         line-height: 52px;
         width: 80px;
+        padding-left: 10px;
         background: url("../../assets/img/ico.png") no-repeat;
         background-position: -164px -887px;
         margin: 0px;
     }
     .data{
-        width: 162px;
+        width: 142px;
         float: left;
         line-height: 52px;
     }
@@ -237,7 +189,7 @@ export default {
         line-height: 52px;
         width: 80px;
         background: url("../../assets/img/ico.png") no-repeat;
-        background-position: 65px -888px;
+        background-position: 47px -887px;
         margin: 0px;
     }
     .total{
