@@ -83,48 +83,52 @@
 export default {
   data() {
     return {
-      messtitle:'',
-      loginType:1,
-      username:'',
-      password:'',
-      username1:'',
-      password1:"",
+      messtitle: "",
+      loginType: 1,
+      username: "",
+      password: "",
+      username1: "",
+      password1: "",
     };
   },
   methods: {
-    show(val){
-      this.loginType=val
+    show(val) {
+      this.loginType = val;
     },
-    mess(){
-      if(this.username==""){
-        this.messtitle="请输入账号"
-      }else if(this.password==""){
-        this.messtitle="请输入密码"
-      }else{
-         this.messtitle=""
-        this.$http.post('/api/admin/checklogin', {username:this.username,pass:this.password},success => {
-          console.log(success)
-          localStorage.setItem('token',success.data)
-          this.$router.push({
-            path:"/"
-          })
-        },fail=>{
-          console.log(fail)
-           this.messtitle="账号或者密码错误"
-        }
-        )
+    mess() {
+      if (this.username == "") {
+        this.messtitle = "请输入账号";
+      } else if (this.password == "") {
+        this.messtitle = "请输入密码";
+      } else {
+        this.messtitle = "";
+        this.$http.post(
+          "/api/admin/checklogin",
+          { username: this.username, pass: this.password },
+          (success) => {
+            console.log(success);
+            localStorage.setItem("token", success.data);
+            this.$router.push({
+              path: "/",
+            });
+          },
+          (fail) => {
+            console.log(fail);
+            this.messtitle = "账号或者密码错误";
+          }
+        );
       }
     },
-    messChange(){
-    if(this.username1==""){
-      this.messtitle="请输入手机号"
-    }else if(this.password1==""){
-      this.messtitle="请输入验证码"
-    }else{
-      this.messtitle=""
-    }
-  }
-  }
+    messChange() {
+      if (this.username1 == "") {
+        this.messtitle = "请输入手机号";
+      } else if (this.password1 == "") {
+        this.messtitle = "请输入验证码";
+      } else {
+        this.messtitle = "";
+      }
+    },
+  },
 };
 </script>
 

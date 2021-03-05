@@ -3,15 +3,18 @@
     <!-- 按钮 -->
     <el-button-group>
       <button class="dele">删除</button>
-      <button class="add-class" @click="addclass = true">添加班级</button>
-      <el-dialog title="增加班级" width="920px" :visible.sync="addclass">
-        <addClass></addClass>
+
+      <button class="add-class" @click="isadd">添加班级</button>
+      <el-dialog :title="addtitle" width="920px" :visible.sync="isshow">
+        <addClass ref="refAddClass" @addClassChild="fnAddClass"></addClass>
         <!-- 添加班级组件 -->
       </el-dialog>
+
       <div class="sele">
         <el-dropdown>
           <span class="el-dropdown-link">
-            课程<i class="el-icon-arrow-down el-icon--right"></i>
+            课程
+            <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>黄金糕</el-dropdown-item>
@@ -23,27 +26,69 @@
     </el-button-group>
 
     <el-table class="table" :data="tableData" style="width: 100%">
-      <el-table-column prop="date" label="班级名称" width="400px">
-      </el-table-column>
-      <el-table-column prop="name" label="课程" width="200px">
-      </el-table-column>
-      <el-table-column prop="address" label="老师" width="200px">
-      </el-table-column>
-      <el-table-column prop="man" label="人数" width="125px"> </el-table-column>
-      <el-table-column prop="ke" label="计划课时" width="125px">
-      </el-table-column>
-      <el-table-column prop="yi" label="已排课时" width="125px">
-      </el-table-column>
-      <el-table-column prop="shang" label="已上课时" width="125px">
-      </el-table-column>
-      <el-table-column width="125px">
+      <el-table-column
+        prop="name"
+        label="班级名称"
+        width="400px"
+      ></el-table-column>
+      <el-table-column
+        prop="coursename"
+        label="课程"
+        width="200px"
+      ></el-table-column>
+      <el-table-column
+        prop="teacherslist"
+        label="老师"
+        width="200px"
+      ></el-table-column>
+      <el-table-column
+        prop="students"
+        label="人数"
+        width="125px"
+      ></el-table-column>
+      <el-table-column
+        prop="coursecounts"
+        label="计划课时"
+        width="125px"
+      ></el-table-column>
+      <el-table-column
+        prop="schcourses"
+        label="已排课时"
+        width="125px"
+      ></el-table-column>
+      <el-table-column
+        prop="endcourses"
+        label="已上课时"
+        width="125px"
+      ></el-table-column>
+      <el-table-column width="80px">
         <div slot-scope="scope" class="class-Seched">
           <span @click="classScheduling(scope.$index)">排课</span>
         </div>
       </el-table-column>
-    </el-table>
 
-    <el-dialog   :title="index"  width="80%"  class="dialog"  center :visible.sync="classSched">
+      <el-table-column width="80px">
+        <div slot-scope="scope" class="class-Seched">
+          <span @click="edit(scope.$index)">修改</span>
+        </div>
+      </el-table-column>
+
+      <el-table-column width="80px">
+        <div slot-scope="scope" class="class-Seched">
+          <el-popconfirm title="确认删除此班级吗？"   @confirm="del(scope.row.id)">
+            <span  slot="reference">删除</span>
+          </el-popconfirm>
+          <!-- <span @click="del(scope.row.id)">删除</span> -->
+        </div>
+      </el-table-column>
+    </el-table>
+    <el-dialog
+      :title="index"
+      width="80%"
+      class="dialog"
+      center
+      :visible.sync="classSched"
+    >
       <classSched></classSched>
     </el-dialog>
   </div>
@@ -59,78 +104,90 @@ export default {
   },
   data() {
     return {
-      tableData: [
-        {
-          date: "架子鼓基础班2101",
-          name: "架子鼓课",
-          address: "王老师",
-          man: "0人",
-          ke: "0课时",
-          yi: "23",
-          shang: 0,
-        },
-        {
-          date: "架子鼓基础班2102",
-          name: "架子鼓课",
-          address: "王老师",
-          man: "0人",
-          ke: "0课时",
-          yi: "23",
-          shang: 0,
-        },
-        {
-          date: "架子鼓基础班2103",
-          name: "架子鼓课",
-          address: "王老师",
-          man: "0人",
-          ke: "0课时",
-          yi: "23",
-          shang: 0,
-        },
-        {
-          date: "钢琴基础班2",
-          name: "舞蹈课",
-          address: "王老师",
-          man: "0人",
-          ke: "0课时",
-          yi: "23",
-          shang: 0,
-        },
-        {
-          date: "基础班",
-          name: "少儿英语课",
-          address: "王老师",
-          man: "0人",
-          ke: "0课时",
-          yi: "23",
-          shang: 0,
-        },
-        {
-          date: "架子鼓课班",
-          name: "架子鼓课",
-          address: "王老师",
-          man: "0人",
-          ke: "100课时",
-          yi: "23",
-          shang: 0,
-        },
-      ],
-      addclass: false,
-      classSched:false,
-      index:''
+      addtitle: "添加班级",
+      tableData: [],
+      isshow: false,
+      classSched: false,
+      index: "",
     };
   },
   methods: {
-    classScheduling(index) {  /* 排课 */
-      this.classSched  = true
-      this.index = this.tableData[index].date
+    edit(index) {
+      //修改
+      let that = this;
+      that.addtitle = "修改班级";
+      let data = JSON.parse(JSON.stringify(that.tableData[index]));
+      that.isshow = true;
+      setTimeout(() => {
+        this.$refs.refAddClass.addList = data
+      }, 50);
     },
+
+    del(index) {
+      //删除
+      console.log(11)
+      this.$http.get(
+        "api/classes/delete",
+        { id: index },
+        (success) => {
+          console.log(success);
+          this.initData();
+          this.$message({
+            message: "班级删除成功",
+            type: "success",
+          });
+        },
+        (fail) => {
+          this.$message.error("班级删除失败");
+          console.log(fail);
+        }
+      );
+    },
+
+    isadd() {
+      //添加
+      this.isshow = true;
+      let that = this;
+      that.addtitle = "添加班级";
+      setTimeout(() => {
+        this.$refs.refAddClass.addList = {};
+      }, 50);
+    },
+
+    fnAddClass() {
+      //添加成功后初始化页面
+      this.initData();
+      this.isshow = false;
+    },
+    classScheduling(index) {
+      /* 排课 */
+      this.classSched = true;
+      this.index = this.tableData[index].name;
+    },
+    initData() {
+      //班级数据
+      this.$http.get(
+        "/api/classes/list",
+        null,
+        (success) => {
+          this.tableData = success.data.list;
+          console.log(this.tableData);
+        },
+        (fail) => {
+          console.log(fail);
+        }
+      );
+    },
+  },
+
+  created() {
+    this.initData(); //初始化页面
   },
 };
 </script>
 
 <style >
-.el-dialog{
+.el-dialog {
   background-color: #fcfcfc;
 }
 .has-gutter {
@@ -241,7 +298,7 @@ export default {
   color: #1890ff;
 }
 
-.el-dialog__title{
+.el-dialog__title {
   font-size: 20px;
 }
 </style>
