@@ -42,13 +42,15 @@
                             <span class="span1">班课</span>
                         </td>
                         <td class="td2">
-                            <span><img src="../../assets/img/jiazigu.jpg" alt=""> 架子鼓课</span>
-                            <span class="span2"><img src="../../assets/img/shijian.jpg" alt=""> 13:30-14:15</span>
-                            <span class=""><img src="../../assets/img/mingming.jpg" alt=""> 明明</span>
+                            <span class="img1"><img src="../../assets/img/jiazigu.jpg" alt=""> 架子鼓课</span>
+                            <span class="img2"><img src="../../assets/img/shijian.jpg" alt=""> 13:30-14:15</span>
+                            <span class="img3"><img src="../../assets/img/mingming.jpg" alt=""> 明明</span>
                         </td>
                         <td class="td3">
-                            <span class=""><img src="../../assets/img/yidaoda.jpg" alt=""> 已到达</span>
-                            <a href="#" @click="detail"><img src="../../assets/img/qiandao.jpg" alt=""> 签到</a>
+                            <span> 已到达</span>
+                            <a href="#" @click="detail">
+                                <span class="img5"><img src="../../assets/img/qiandao.jpg" alt=""></span> 签到
+                            </a>
                             
                             <el-dialog :visible.sync="detailss">
                             <detail></detail>
@@ -82,14 +84,14 @@ export default {
     };
   },
   created(){
-      this.loaddata();
+    //   this.loaddata();
   },
   methods: {
     detail() {
       this.detailss = true;
     },
     loaddata(){   //请求接口，获取数据
-        axios.get('/api/courses/list').then(function (res){
+        axios.post('/api/classes/list').then(function (res){
             console.log(res)
             var _this=this
         })
@@ -184,13 +186,12 @@ export default {
         width: 425px;
         height: 38px;
         border: 1px solid #dee3e9;
-        background: white;
         position: absolute;
         left: 473px;
         top: 6px;
-        background-image: url('../../assets/img/fangdajing.jpg');
-        background-repeat: no-repeat;
-        background-position: 389px 8px;
+        background: white url('../../assets/img/ico.png') no-repeat;
+        background-position: 288px -432px;
+        /* background-size: 179px 1050px; */
     }
     .box .header .right .right1{
         width: 79px;
@@ -250,14 +251,14 @@ export default {
     }
     .box .main .bottom .td2{
         padding-right: 322px;
+        background: white url('../../assets/img/ico.png') no-repeat;
+        background-position: 642px -451px;
     } 
-    .box .main .bottom .td2 .span2{
-        margin-left: 42px;
-        margin-right: 20px;
-    }
+    
     .box .main .bottom .td3{
         padding-right: 300px;
     }
+    
     .box .main .bottom .td3 a{
         margin-left: 60px;
         color: #4080fc;
